@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 const ThemeParks = require("themeparks");
 const DisneylandParisMagicKingdom = new ThemeParks.Parks.DisneylandParisMagicKingdom();
 const DisneylandParisWaltDisneyStudios = new ThemeParks.Parks.DisneylandParisWaltDisneyStudios();
@@ -25,7 +25,7 @@ const CheckWaitTimes = () => {
 
 CheckWaitTimes();
 
-http.createServer(function (req, res) { 
+https.createServer(function (req, res) { 
     res.writeHead(200, {'Content-Type': 'application/json'}); 
     if(req.url === '/') {
         res.write(rideTimesGlobalString); 
