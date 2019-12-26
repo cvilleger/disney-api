@@ -1,11 +1,7 @@
-const https = require('https');
+const http = require('http');
 const ThemeParks = require("themeparks");
 const DisneylandParisMagicKingdom = new ThemeParks.Parks.DisneylandParisMagicKingdom();
 const DisneylandParisWaltDisneyStudios = new ThemeParks.Parks.DisneylandParisWaltDisneyStudios();
-
-let rideTimesKingdom = null;
-let rideTimesGlobal = null;
-let rideTimesGlobalString = null;
 
 const CheckWaitTimes = () => {
     DisneylandParisMagicKingdom.GetWaitTimes().then((rideTimes) => {
@@ -23,9 +19,13 @@ const CheckWaitTimes = () => {
     });
 };
 
+let rideTimesKingdom = null;
+let rideTimesGlobal = null;
+let rideTimesGlobalString = null;
+
 CheckWaitTimes();
 
-https.createServer(function (req, res) { 
+http.createServer(function (req, res) { 
     res.writeHead(200, {'Content-Type': 'application/json'}); 
     if(req.url === '/') {
         res.write(rideTimesGlobalString); 
